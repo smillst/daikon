@@ -1810,7 +1810,8 @@ public final class FileIO {
     // https://github.com/typetools/checker-framework/issues/862
     // Use NIS so that it is in scope to check the precondition below.
     Object o = NIS.suppressor_map;
-    ppt.add_bottom_up(vt, 1);
+    @SuppressWarnings("contracts.precondition.not.satisfied")
+    Object tmp = ppt.add_bottom_up(vt, 1);
 
     if (debugVars.isLoggable(Level.FINE)) {
       debugVars.fine(ppt.name() + " vars: " + Debug.int_vars(ppt, vt));

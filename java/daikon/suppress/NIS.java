@@ -1059,6 +1059,7 @@ public class NIS {
      * invariants are added to the beginning of the list, non-falsified
      * ones to the end.
      */
+    /*@RequiresNonNull("NIS.suppressor_map")*/
     public void add(Invariant inv) {
 
       // Only possible antecedents need to be added

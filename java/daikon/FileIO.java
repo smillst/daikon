@@ -1135,7 +1135,7 @@ public final class FileIO {
      * {@link FileIO#process_sample(PptMap, PptTopLevel, ValueTuple, Integer)}.
      * @see FileIO#process_sample(PptMap, PptTopLevel, ValueTuple, Integer)
      */
-    /*@RequiresNonNull("FileIO.data_trace_state")*/
+    /*@RequiresNonNull({"FileIO.data_trace_state", "NIS.suppressor_map"})*/
     public void process_sample(
         PptMap all_ppts, PptTopLevel ppt, ValueTuple vt, /*@Nullable*/ Integer nonce) {
       FileIO.process_sample(all_ppts, ppt, vt, nonce);
@@ -1750,7 +1750,7 @@ public final class FileIO {
    * supply it to the program point for flowing.
    * @param vt trace data only; modified by side effect to add derived vars
    **/
-  /*@RequiresNonNull("FileIO.data_trace_state")*/
+  /*@RequiresNonNull({"FileIO.data_trace_state", "NIS.suppressor_map"})*/
   public static void process_sample(
       PptMap all_ppts, PptTopLevel ppt, ValueTuple vt, /*@Nullable*/ Integer nonce) {
 

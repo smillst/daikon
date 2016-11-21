@@ -137,12 +137,7 @@ public class AnnotateNullable {
             "nullness") // map: retrieve class name from class Ppt name, with string manipulation
         /*@NonNull*/ List<PptTopLevel> static_methods = class_map.get(ppt.name().replace(":::CLASS", ""));
         int child_cnt = 0;
-        // TODO: Once Checker Framework issue 565 has been fixed
-        // ( https://github.com/typetools/checker-framework/issues/565 ),
-        // change the following two lines back to
-        // for (PptRelation child_rel : ppt.children) {
-        for (int i = 0; i < ppt.children.size(); i++) {
-          PptRelation child_rel = ppt.children.get(i);
+        for (PptRelation child_rel : ppt.children) {
           PptTopLevel child = child_rel.child;
           // Skip enter ppts, all of the info is at the exit.
           if (child.type == PptType.ENTER) continue;

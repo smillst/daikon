@@ -869,6 +869,7 @@ JAVAC_FORMATTER_ARGS = -processor org.checkerframework.checker.formatter.Formatt
 # The override.sideeffect.invalid warning is issued by the Lock Checker when the side effect
 # annotation on the overridder method is weaker than that on the overridden method.
 JAVAC_LOCK_ARGS = -processor org.checkerframework.checker.lock.LockChecker -AsuppressWarnings=method.guarantee.violated,override.sideeffect.invalid -implicit:class -Xlint:-processing -AskipDefs='${ALLSYSTEMS_SKIPDEFS}'
+JAVAC_VALUE_ARGS= -processor org.checkerframework.common.value.ValueChecker -implicit:class -Xlint:-processing -AskipDefs='${ALLSYSTEMS_SKIPDEFS}'
 JAVAC_JAVARI_ARGS = -processor org.checkerframework.checker.javari.JavariChecker -implicit:class -Xlint:-processing -AskipDefs='${ALLSYSTEMS_SKIPDEFS}'
 JAVAC_IGJ_ARGS = -processor org.checkerframework.checker.igj.IGJChecker -implicit:class -Xlint:-processing -AskipDefs='${ALLSYSTEMS_SKIPDEFS}'
 ## Code in dcomp directory is not called directly; annotations would be useless.
@@ -901,7 +902,7 @@ show_nullness_java_files:
 # check-all: check-formatter check-interning check-nullness check-regex check-signature check-prototype check-vindex
 ## check-regex-qual target runs extremely slowly.
 # check-all: check-formatter check-interning check-nullness check-regex check-regex-qual check-signature
-check-all: check-formatter check-interning check-nullness check-regex check-signature check-lock
+check-all: check-formatter check-interning check-nullness check-regex check-signature check-lock check-value
 
 intern: check-interning
 interning: check-interning
@@ -1041,6 +1042,10 @@ check-formatter: ${ALL_GENERATED_FILES} compile
 check-lock: ${ALL_GENERATED_FILES} compile
 	@echo ${JAVAC_COMMAND_FOR_CHECKER} ${CHECKER_ARGS} ${JAVAC_LOCK_ARGS} ...
 	@${JAVAC_COMMAND_FOR_CHECKER} ${JAVAC_LOCK_ARGS} ${CHECKER_ARGS} ${JAVA_FILES}
+
+check-value: ${ALL_GENERATED_FILES} compile
+	@echo ${JAVAC_COMMAND_FOR_CHECKER} ${CHECKER_ARGS} ${JAVAC_VALUE_ARGS} ...
+	@${JAVAC_COMMAND_FOR_CHECKER} ${JAVAC_VALUE_ARGS} ${CHECKER_ARGS} ${JAVA_FILES}
 
 check-igj-all-nostubs: ${ALL_GENERATED_FILES} compile
 	@echo ${JAVAC_COMMAND_FOR_CHECKER} ${JAVAC_IGJ_ARGS} ${CHECKER_ARGS} ...

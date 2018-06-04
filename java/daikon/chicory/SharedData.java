@@ -18,8 +18,6 @@ import org.checkerframework.dataflow.qual.*;
  * those classes may be executing on different threads, these items must be accessed via
  * synchronized statements.
  */
-@SuppressWarnings(
-    "initialization.fields.uninitialized") // library initialized in code added by run-time instrumentation
 public class SharedData {
   /**
    * List of classes recently transformed. This list is examined in each enter/exit and the decl

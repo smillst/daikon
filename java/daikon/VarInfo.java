@@ -2780,8 +2780,6 @@ public final /*@Interned*/ class VarInfo implements Cloneable, Serializable {
 
   /** If the message is new print it, otherwise discard it */
   /*@FormatMethod*/
-  @SuppressWarnings(
-      "formatter") // call to format method is correct because of @FormatMethod annotation
   static void debug_print_once(String format, /*@Nullable*/ Object... args) {
     String msg = String.format(format, args);
     if (!out_strings.contains(msg)) {

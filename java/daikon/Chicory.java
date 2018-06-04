@@ -316,13 +316,11 @@ public class Chicory {
     if (daikon_online) {
       runDaikon();
 
-      @SuppressWarnings("nullness") // didn't redirect stream, so getter returns non-null
       StreamRedirectThread tmp_daikon_err =
           new StreamRedirectThread("stderr", daikon_proc.getErrorStream(), System.err);
       daikon_err = tmp_daikon_err;
       daikon_err.start();
 
-      @SuppressWarnings("nullness") // didn't redirect stream, so getter returns non-null
       /*@NonNull*/ InputStream daikonStdOut = daikon_proc.getInputStream();
       // daikonReader escapes, so it is not closed in this method.
       BufferedReader daikonReader = new BufferedReader(new InputStreamReader(daikonStdOut, UTF_8));
@@ -405,7 +403,6 @@ public class Chicory {
       System.exit(1);
     }
 
-    @SuppressWarnings("nullness") // didn't redirect stream, so getter returns non-null
     StreamRedirectThread stdin_thread =
         new StreamRedirectThread("stdin", System.in, chicory_proc.getOutputStream(), false);
     stdin_thread.start();
@@ -511,11 +508,9 @@ public class Chicory {
   public int redirect_wait(Process p) {
 
     // Create the redirect theads and start them
-    @SuppressWarnings("nullness") // didn't redirect stream, so getter returns non-null
     StreamRedirectThread err_thread =
         new StreamRedirectThread("stderr", p.getErrorStream(), System.err);
 
-    @SuppressWarnings("nullness") // didn't redirect stream, so getter returns non-null
     StreamRedirectThread out_thread =
         new StreamRedirectThread("stdout", p.getInputStream(), System.out);
 

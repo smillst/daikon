@@ -1868,8 +1868,6 @@ import typequals.*;
    * @return whether or not it logged anything
    */
   /*@FormatMethod*/
-  @SuppressWarnings(
-      "formatter") // call to format method is correct because of @FormatMethod annotation
   public boolean log(
       /*>>> @UnknownInitialization(Invariant.class) @Raw(Invariant.class) @NonPrototype Invariant this,*/ String
           format,

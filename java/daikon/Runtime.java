@@ -29,7 +29,6 @@ import org.checkerframework.checker.signature.qual.*;
 // I don't see a way to suppress per-field rather than on the whole class.
 // See Checker Framework test case
 @SuppressWarnings({
-  "initialization.fields.uninitialized", // for the dtrace field.
   "JavaLangClash"
 })
 public final class Runtime {

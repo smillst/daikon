@@ -43,7 +43,7 @@ public class DSForest {
 
     @SuppressWarnings({
       "initialization.invalid.field.write.unknown",
-      "assignment.type.incompatible"
+      "nullness:assignment.type.incompatible"
     }) // weakness of FBC type system
     public DSForestNode(String element) {
       this.element = element;

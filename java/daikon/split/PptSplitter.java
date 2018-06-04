@@ -141,7 +141,6 @@ public class PptSplitter implements Serializable {
   }
 
   /** Adds the sample to one of the conditional ppts in the split. */
-  @SuppressWarnings("flowexpr.parse.error") // private field
   /*@RequiresNonNull({"NIS.suppressor_map", "NIS.suppressor_map_suppression_count", "NIS.all_suppressions"})*/
   public void add_bottom_up(ValueTuple vt, int count) {
 
@@ -198,7 +197,6 @@ public class PptSplitter implements Serializable {
   }
 
   /** Adds implication invariants based on the invariants found on each side of the split. */
-  @SuppressWarnings("flowexpr.parse.error") // private field
   /*@RequiresNonNull({"parent.equality_view", "NIS.all_suppressions", "NIS.suppressor_map"})*/
   public void add_implications() {
 
@@ -378,8 +376,7 @@ public class PptSplitter implements Serializable {
                 System.out.println("  " + child_ppt.constants.getConstant(cvi));
               }
             }
-            @SuppressWarnings("lock:cannot.dereference") // https://tinyurl.com/cfissue/755
-            String eq_inv_ppt = eq_inv.ppt.toString();
+
             assert eq_inv.ppt.equals(child_ppt.findSlice(cvis_non_canonical));
 
             System.out.println("All child_ppt slices: ");
@@ -393,7 +390,7 @@ public class PptSplitter implements Serializable {
                     + "\n  "
                     + eq_inv
                     + "\n  @"
-                    + eq_inv_ppt
+                    + eq_inv.ppt
                     + "\n  but can't find slice for "
                     + VarInfo.arrayToString(cvis_sorted));
           }
@@ -481,10 +478,7 @@ public class PptSplitter implements Serializable {
           dummy2.negate();
           orig_invs.put(dummy1, dummy1);
           orig_invs.put(dummy2, dummy2);
-          @SuppressWarnings(
-              "keyfor") // BUG in Daikon, possibly, because these are not keys, I think; need to investigate
-          /*@KeyFor("orig_invs")*/ Invariant[] dummy_pair =
-              new /*@KeyFor("orig_invs")*/ Invariant[] {dummy1, dummy2};
+          /*@KeyFor("orig_invs")*/ Invariant[] dummy_pair = {dummy1, dummy2};
           exclusive_invs_vec.add(dummy_pair);
           // Don't add the dummy_pair, as it would just be removed afterward.
           // different_invs_vec.add(dummy_pair);

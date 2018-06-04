@@ -481,7 +481,7 @@ public final class Daikon {
    * @see #main(String[])
    * @see TerminationMessage
    */
-  @SuppressWarnings("contracts.precondition.not.satisfied") // private field
+  @SuppressWarnings("nullness:contracts.precondition.not.satisfied") // private field
   public static void mainHelper(final String[] args) {
     // Cleanup from any previous runs
     cleanup();
@@ -1844,7 +1844,7 @@ public final class Daikon {
    * two return statements are enabled by default (though other splitters can be defined by the
    * user).
    */
-  @SuppressWarnings("contracts.precondition.not.satisfied")
+  @SuppressWarnings("nullness:contracts.precondition.not.satisfied")
   public static void setup_splitters(PptTopLevel ppt) {
     if (PptSplitter.dkconfig_disable_splitting) {
       return;
@@ -1982,7 +1982,7 @@ public final class Daikon {
    * have been loaded, all of the program points have been setup, and candidate invariants have been
    * instantiated. This routine processes data to falsify the candidate invariants.
    */
-  @SuppressWarnings("contracts.precondition.not.satisfied") // private field
+  @SuppressWarnings("nullness:contracts.precondition.not.satisfied") // private field
   /*@RequiresNonNull("fileio_progress")*/
   // set in mainHelper
   private static void process_data(PptMap all_ppts, Set<String> dtrace_files) {
@@ -2398,7 +2398,6 @@ public final class Daikon {
    * Undoes the invariants suppressed for the dynamic constant, suppression and equality set
    * optimizations (should yield the same invariants as the simple incremental algorithm.
    */
-  @SuppressWarnings("flowexpr.parse.error") // private field
   /*@RequiresNonNull({"NIS.all_suppressions", "NIS.suppressor_map"})*/
   public static void undoOpts(PptMap all_ppts) {
 

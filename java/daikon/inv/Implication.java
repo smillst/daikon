@@ -303,10 +303,9 @@ public class Implication extends Joiner {
   @Override
   /*@FormatMethod*/
   @SuppressWarnings({
-    "override.receiver.invalid", // sound overriding, not expressible in Checker Framework
-    "method.invocation.invalid", // call to format is OK
-    "formatter"
-  }) // call to format method is correct because of @FormatMethod annotation
+    "initialization:override.receiver.invalid", // sound overriding, not expressible in Checker Framework
+    "initialization:method.invocation.invalid" // call to format is OK
+  })
   public boolean log(
       /*>>>@UnknownInitialization(Implication.class) @Raw(Implication.class) Implication this,*/ String
           format,

@@ -39,7 +39,6 @@ import typequals.*;
 /** Main class for non-instantiating suppression. Handles setup and other overall functions. */
 public class NIS {
 
-  @SuppressWarnings("initialization.fields.uninitialized") // never instantiated
   public NIS() {
     throw new Error("Do not instantiate");
   }

@@ -115,7 +115,7 @@ public final class ValueTuple implements Cloneable {
     return mods[value_index] == MISSING_NONSENSICAL;
   }
 
-  @SuppressWarnings("contracts.conditional.postcondition.not.satisfied") // dependent property
+  @SuppressWarnings("nullnes:contracts.conditional.postcondition.not.satisfied") // dependent property
   /*@EnsuresNonNullIf(result=false, expression="this.vals[#1]")*/
   /*@Pure*/
   boolean isMissingFlow(
@@ -124,7 +124,6 @@ public final class ValueTuple implements Cloneable {
     return mods[value_index] == MISSING_FLOW;
   }
 
-  @SuppressWarnings("nullness") // postcondition: array expression
   /*@EnsuresNonNullIf(result=false, expression="vals[#1]")*/
   /*@Pure*/
   boolean isMissing(

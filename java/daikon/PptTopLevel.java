@@ -227,8 +227,6 @@ public class PptTopLevel extends Ppt {
     int ppts_index = 0;
 
     @Override
-    @SuppressWarnings(
-        "flowexpr.parse.error") // Checker Framework bug: splitters is a field in this class
     /*@EnsuresNonNullIf(result=true, expression="splitters")*/
     public boolean hasNext(/*>>>@GuardSatisfied CondIterator this*/) {
       if (splitters == null) return false;
@@ -280,8 +278,6 @@ public class PptTopLevel extends Ppt {
   }
 
   /** Returns whether or not this ppt has any splitters. */
-  @SuppressWarnings(
-      "contracts.conditional.postcondition.not.satisfied") // Checker Framework bug: problem with "splitters" again
   /*@EnsuresNonNullIf(result=true, expression="splitters")*/
   public boolean has_splitters() {
     return (splitters != null) && (splitters.size() > 0);
@@ -936,8 +932,8 @@ public class PptTopLevel extends Ppt {
    * @return the set of all invariants weakened or falsified by this sample
    */
   @SuppressWarnings({
-    "flowexpr.parse.error",
-    "contracts.precondition.not.satisfied"
+    "nullness:flowexpr.parse.error",
+    "nullness:contracts.precondition.not.satisfied"
   }) // private field
   /*@RequiresNonNull({"NIS.suppressor_map", "NIS.suppressor_map_suppression_count", "NIS.all_suppressions"})*/
   public /*@Nullable*/ Set<Invariant> add_bottom_up(ValueTuple vt, int count) {
@@ -1245,7 +1241,6 @@ public class PptTopLevel extends Ppt {
   }
 
   /** Returns whether or not the specified variable is dynamically constant. */
-  @SuppressWarnings("contracts.conditional.postcondition.not.satisfied") // Checker Framework bug
   /*@EnsuresNonNullIf(result=true, expression="constants")*/
   /*@Pure*/
   public boolean is_constant(VarInfo v) {
@@ -1256,7 +1251,6 @@ public class PptTopLevel extends Ppt {
    * Returns whether or not the specified variable is currently dynamically constant, or was a
    * dynamic constant at the beginning of constant processing.
    */
-  @SuppressWarnings("contracts.conditional.postcondition.not.satisfied") // Checker Framework bug
   /*@EnsuresNonNullIf(result=true, expression="constants")*/
   /*@Pure*/
   public boolean is_prev_constant(VarInfo v) {
@@ -1264,7 +1258,6 @@ public class PptTopLevel extends Ppt {
   }
 
   /** Returns whether or not the specified variable has been missing for all samples seen so far. */
-  @SuppressWarnings("contracts.conditional.postcondition.not.satisfied") // Checker Framework bug
   /*@EnsuresNonNullIf(result=true, expression="constants")*/
   /*@Pure*/
   public boolean is_missing(VarInfo v) {
@@ -1275,7 +1268,6 @@ public class PptTopLevel extends Ppt {
    * returns whether the specified variable is currently missing OR was missing at the beginning of
    * constants processing.
    */
-  @SuppressWarnings("contracts.conditional.postcondition.not.satisfied") // Checker Framework bug
   /*@EnsuresNonNullIf(result=true, expression="constants")*/
   /*@Pure*/
   public boolean is_prev_missing(VarInfo v) {
@@ -2611,7 +2603,7 @@ public class PptTopLevel extends Ppt {
    * Configuration variable "pairwise_implications" controls whether all or only the first two
    * conditional program points are considered.
    */
-  @SuppressWarnings("contracts.precondition.not.satisfied") // private field
+  @SuppressWarnings("nullness:contracts.precondition.not.satisfied") // private field
   public void addImplications() {
 
     if (PptSplitter.dkconfig_disable_splitting) return;
@@ -3568,7 +3560,6 @@ public class PptTopLevel extends Ppt {
     }
 
     // Build actual equality sets that match the pairs we found
-    @SuppressWarnings("keyfor") // checker weakness: keyfor: read-only Set permits covariance
     Set<VarInfo.Pair> emap_keySet = emap.keySet();
     equality_view.instantiate_from_pairs(emap_keySet);
     if (debugMerge.isLoggable(Level.FINE)) {
@@ -3639,7 +3630,7 @@ public class PptTopLevel extends Ppt {
    * of the suppressed invariants in each of the children, performing the merge, and then removing
    * them.
    */
-  @SuppressWarnings("contracts.precondition.not.satisfied") // private field
+  @SuppressWarnings("nullness:contracts.precondition.not.satisfied") // private field
   /*@RequiresNonNull("equality_view")*/
   public void merge_invs_multiple_children() {
 

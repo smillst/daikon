@@ -406,10 +406,8 @@ public abstract /*@Interned*/ class VarInfoName implements Serializable, Compara
       VarInfoName result = ref.get();
       return result;
     } else {
-      @SuppressWarnings("interning") // intern method
-      VarInfoName this_interned = this;
-      internTable.put(this_interned, new WeakReference<VarInfoName>(this_interned));
-      return this_interned;
+      internTable.put(this, new WeakReference<VarInfoName>(this));
+      return this;
     }
   }
 
@@ -2355,7 +2353,6 @@ public abstract /*@Interned*/ class VarInfoName implements Serializable, Compara
    * Use to report whether a node is in a pre- or post-state context. Throws an assertion error if a
    * given goal isn't present.
    */
-  @SuppressWarnings("interning") // equality checking pattern, etc.
   public static class NodeFinder extends AbstractVisitor<VarInfoName> {
     /**
      * Creates a new NodeFinder.
@@ -2456,7 +2453,6 @@ public abstract /*@Interned*/ class VarInfoName implements Serializable, Compara
    * Finds if a given VarInfoName is contained in a set of nodes in the VarInfoName tree using ==
    * comparison. Recurse through everything except fields, so in x.a, we don't look at a.
    */
-  @SuppressWarnings("interning") // equality checking pattern, etc.
   public static class Finder extends AbstractVisitor<VarInfoName> {
     // state and accessors
     private final Set<VarInfoName> goals;
@@ -2672,7 +2668,6 @@ public abstract /*@Interned*/ class VarInfoName implements Serializable, Compara
    * Use to traverse a tree, find the first (elements ...) node, and report whether it's in pre or
    * post-state.
    */
-  @SuppressWarnings("interning") // equality checking pattern, etc.
   public static class ElementsFinder extends AbstractVisitor<Elements> {
     public ElementsFinder(VarInfoName name) {
       elems = name.accept(this);
@@ -2748,7 +2743,6 @@ public abstract /*@Interned*/ class VarInfoName implements Serializable, Compara
    * A Replacer is a Visitor that makes a copy of a tree, but replaces some node (and its children)
    * with another. The result is *not* interned; the client must do that if desired.
    */
-  @SuppressWarnings("interning") // equality checking pattern, etc.
   public static class Replacer extends AbstractVisitor<VarInfoName> {
     private final VarInfoName old;
     private final VarInfoName _new;

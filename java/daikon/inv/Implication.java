@@ -304,7 +304,7 @@ public class Implication extends Joiner {
   /*@FormatMethod*/
   @SuppressWarnings({
     "nullness:override.receiver.invalid", // sound overriding, not expressible in Checker Framework
-    "nullness:method.invocation.invalid" // call to format is OK
+    "nullnessdaikon/VarInfoName.java:409:method.invocation.invalid" // call to format is OK
   })
   public boolean log(
       /*>>>@UnknownInitialization(Implication.class) @Raw(Implication.class) Implication this,*/ String
